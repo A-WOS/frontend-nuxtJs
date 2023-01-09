@@ -3,9 +3,9 @@
     <div class="card-body">
       <h5 class="card-title">Name: {{ amenity.name }}</h5>
       <div class="action-buttons">
-        <nuxt-link :to="`/rooms/amenities/${amenity.id}/`" class="btn btn-sm btn-success">View</nuxt-link>
-        <nuxt-link :to="`/rooms/amenities/${amenity.id}/edit/`" class="btn btn-sm btn-primary">편집</nuxt-link>
-        <button @click="onDelete(amenity.id)" class="btn btn-sm btn-danger">삭제</button>
+        <nuxt-link :to="`/rooms/amenities/${amenity.pk}/`" class="btn btn-sm btn-success">View</nuxt-link>
+        <nuxt-link :to="`/rooms/amenities/${amenity.pk}/edit/`" class="btn btn-sm btn-primary">편집</nuxt-link>
+        <button @click="onDelete(amenity.pk)" class="btn btn-sm btn-danger">삭제</button>
       </div>
     </div>
   </div>
