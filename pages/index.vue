@@ -3,7 +3,7 @@
     <div class="text-box">
       <h1>Amenities ?</h1>
       <p class="mt-3">look for many amenities ❤️</p>
-      <nuxt-link class="btn btn-outline btn-large btn-info" to="/api/v1/rooms/amenities">
+      <nuxt-link class="btn btn-outline btn-large btn-info" to="/rooms/amenities">
         View Amenities <span class="ml-2">&rarr;</span>
       </nuxt-link>
     </div>
