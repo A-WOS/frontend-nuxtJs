@@ -30,8 +30,8 @@ export default {
   },
   async asyncData({$axios, params}) {
     try {
-      let amenities = await $axios.$get('/rooms/amenities/');
-      console.log(params)
+      let amenities = await $axios.$get('/rooms/amenities');
+      console.log("params: ", params)
       return {amenities};
     } catch (e) {
       return {amenities: []};
@@ -54,7 +54,8 @@ export default {
           //   this.$router.push("/rooms/amenities");// 삭제 후 이동
           // })
 
-        let newAmenities = await this.$axios.get("/rooms/amenities"); // get new list of amenities
+        let newAmenities = await this.$axios.$get("/rooms/amenities"); // get new list of amenities
+        console.log(newAmenities)
         this.amenities = newAmenities; // update list of amenities
       } catch (e) {
         console.log(e);
