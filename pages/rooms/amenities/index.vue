@@ -8,7 +8,7 @@
         </div>
       </div>
       <template v-for="amenity in amenities">
-        <div :key="amenity.id" class="col-lg-3 col-md-4 col-sm-6 mb-4">
+        <div :key="amenity.pk" class="col-lg-3 col-md-4 col-sm-6 mb-4">
           <amenity-card :onDelete="deleteAmenity" :amenity="amenity"></amenity-card>
         </div>
       </template>
@@ -19,24 +19,6 @@
 <script>
 import AmenityCard from "@/components/AmenityCard.vue";
 
-const sampleData = [
-  {
-    id: 1,
-    name: "Shower",
-    description: "two shower booths",
-  },
-  {
-    id: 2,
-    name: "kitchen",
-    description: "cook",
-  },
-  {
-    id: 3,
-    name: "amazing rooms",
-    description: "Three rooms"
-  }
-];
-
 export default {
   head() {
     return {
@@ -46,11 +28,14 @@ export default {
   components: {
     AmenityCard
   },
-  asyncData(context) {
-    let data = sampleData;
-    return {
-      amenities: data
-    };
+  async asyncData({$axios, params}) {
+    try {
+      let amenities = await $axios.$get('/rooms/amenities/');
+      console.log(params)
+      return {amenities};
+    } catch (e) {
+      return {amenities: []};
+    }
   },
   data() {
     return {
@@ -58,8 +43,22 @@ export default {
     };
   },
   methods: {
-    deleteAmenity(amenity_id) {
-      console.log(deleted `${amenity.id}`)
+    async deleteAmenity(amenity_pk) {
+      try {
+        console.log(amenity_pk);
+        await this.$axios.$delete(`/rooms/amenities/${amenity_pk}`); // delete amenity
+        // await this.$axios
+          // .delete(`/rooms/amenities/${amenity_pk}`); // delete amenity
+          // .then(() => {
+          //   alert("삭제가 완료되었습니다.");
+          //   this.$router.push("/rooms/amenities");// 삭제 후 이동
+          // })
+
+        let newAmenities = await this.$axios.get("/rooms/amenities"); // get new list of amenities
+        this.amenities = newAmenities; // update list of amenities
+      } catch (e) {
+        console.log(e);
+      }
     }
   }
 };
