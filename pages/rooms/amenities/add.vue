@@ -35,7 +35,6 @@ export default {
         name: "",
         description: ""
       },
-      preview: ""
     };
   },
   methods: {
