@@ -47,7 +47,7 @@ export default {
         formData.append(data, this.amenity[data]);
       }
       try {
-        let response = await this.$axios.$post("/rooms/amenities/", formData, config);
+        await this.$axios.$post("/rooms/amenities/", formData, config);
         await this.$router.push("/rooms/amenities/");
       } catch (e) {
         console.log(e);

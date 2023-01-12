@@ -46,7 +46,8 @@ export default {
     };
   },
   methods: {
-    async submitAmenity() {
+    async submitAmenity()
+    {
       let editedAmenity = this.amenity;
 
       const config = {
@@ -55,18 +56,15 @@ export default {
       let formData = new FormData();
       for (let data in editedAmenity) {
         formData.append(data, editedAmenity[data]);
-        console.log("data: ", data)
-        console.log("editedAmenity[data]: ", editedAmenity[data])
       }
-      console.log("editedAmenity: ", editedAmenity);
       try {
-        let response = await this.$axios.$put(`/rooms/amenities/${editedAmenity.pk}`, formData, config);
-        console.log("response: ", response);
+        await this.$axios.$put(`/rooms/amenities/${editedAmenity.pk}`, formData, config);
         await this.$router.push(`/rooms/amenities/`);
       } catch (e) {
         console.log(e);
       }
     }
+
   }
 
 }
